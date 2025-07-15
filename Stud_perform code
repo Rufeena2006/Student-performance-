@@ -1,0 +1,44 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Create a DataFrame from the student performance data
+data = {
+    'Student': ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+    'Study Hours': [1, 2, 3, 4, 5, 6, 7],
+    'Sleep Hours': [8, 7, 6, 2, 3, 4, 1],
+    'Score': [45, 50, 55, 70, 60, 80, 85]
+}
+df = pd.DataFrame(data)
+
+# Calculate the correlation between Study Hours and Score
+study_hours_corr = df['Study Hours'].corr(df['Score'])
+print(f'Correlation between Study Hours and Score: {study_hours_corr}')
+
+# Calculate the correlation between Sleep Hours and Score
+sleep_hours_corr = df['Sleep Hours'].corr(df['Score'])
+print(f'Correlation between Sleep Hours and Score: {sleep_hours_corr}')
+
+# Plot a scatter plot to visualize the relationship between Study Hours and Score
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='Study Hours', y='Score', data=df)
+plt.title('Relationship between Study Hours and Score')
+plt.xlabel('Study Hours')
+plt.ylabel('Score')
+plt.show()
+
+# Plot a scatter plot to visualize the relationship between Sleep Hours and Score
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='Sleep Hours', y='Score', data=df)
+plt.title('Relationship between Sleep Hours and Score')
+plt.xlabel('Sleep Hours')
+plt.ylabel('Score')
+plt.show()
+
+# Identify the student with the highest score
+top_performer = df.loc[df['Score'].idxmax()]
+print(f'Top Performer: {top_performer["Student"]} with a score of {top_performer["Score"]}')
+
+# Identify the student with the lowest score
+bottom_performer = df.loc[df['Score'].idxmin()]
+print(f'Bottom Performer: {bottom_performer["Student"]} with a score of {bottom_performer["Score"]}')
